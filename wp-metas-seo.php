@@ -178,7 +178,7 @@ function motionweb_favicons()
 	echo "\t" . '<!-- Apple Touch icons -->' . "\n";
 	echo "\t" . '<meta name="mobile-web-app-capable" content="yes">' . "\n";
 	echo "\t" . '<meta name="apple-mobile-web-app-capable" content="yes">' . "\n";
-	echo "\t" . '<meta name="apple-mobile-web-app-title" content="' . esc_attr( get_bloginfo( 'name' ) ) . '">' . "\n";
+	echo "\t" . '<meta name="apple-mobile-web-app-title" content="' . esc_attr(get_bloginfo('name')) . '">' . "\n";
 	echo "\t" . '<link rel="apple-touch-icon" sizes="57x57" href="' . $url_favicon . 'apple-touch-icon-57x57.png">' . "\n";
 	echo "\t" . '<link rel="apple-touch-icon" sizes="72x72" href="' . $url_favicon . 'apple-touch-icon-72x72.png">' . "\n";
 	echo "\t" . '<link rel="apple-touch-icon" sizes="76x76" href="' . $url_favicon . 'apple-touch-icon-76x76.png">' . "\n";
@@ -203,7 +203,7 @@ function motionweb_favicons()
 	echo "\t" . '<link rel="mask-icon" href="' . $url_favicon . 'safari-pinned-tab.svg" color="#' . $color . '">' . "\n";
 
 	echo "\t" . '<!-- Windows 8 icon and RSS feed -->' . "\n";
-	echo "\t" . '<meta name="application-name" content="' . esc_attr( get_bloginfo( 'name' ) ) . '">' . "\n";
+	echo "\t" . '<meta name="application-name" content="' . esc_attr(get_bloginfo('name')) . '">' . "\n";
 	echo "\t" . '<meta name="msapplication-config" content="' . $url_favicon . 'browserconfig.xml">' . "\n";
 	echo "\t" . '<meta name="msapplication-TileColor" content="#' . $color . '">' . "\n";
 	echo "\t" . '<meta name="theme-color" content="#' . $color . '">' . "\n";
@@ -248,7 +248,7 @@ function opengraph_protocol()
 	echo "\t" . '<meta property="og:locale:alternate" content="en_US" />' . "\n";
 	echo "\t" . '<meta property="og:title" content="' . $title . '" />' . "\n";
 	if (is_home()) {
-		echo "\t" . '<meta property="og:description" content="' . esc_attr( get_bloginfo( 'description' ) ) . '" />' . "\n";
+		echo "\t" . '<meta property="og:description" content="' . esc_attr(get_bloginfo('description')) . '" />' . "\n";
 		echo "\t" . '<meta property="og:url" content="' . home_url('/') . '" />' . "\n";
 	} else {
 		echo "\t" . '<meta property="og:description" content="' . excerpt('50') . '" />' . "\n";
@@ -269,7 +269,7 @@ function opengraph_protocol()
 	echo "\t" . '<!--Protocol Twitter Card -->' . "\n";
 	echo "\t" . '<meta name="twitter:title" content="' . $title . '" />' . "\n";
 	if (is_home()) {
-		echo "\t" . '<meta name="twitter:description" content="' . esc_attr( get_bloginfo( 'description' ) ) . '" />' . "\n";
+		echo "\t" . '<meta name="twitter:description" content="' . esc_attr(get_bloginfo('description')) . '" />' . "\n";
 	} else {
 		echo "\t" . '<meta name="twitter:description" content="' . excerpt('50') . '" />' . "\n";
 	}
@@ -289,13 +289,13 @@ remove_action('wp_head', '_wp_render_title_tag', 1);
 // Remove Head Security.
 ////////////////////////////////////////////////////////////////////////////
 if (!function_exists('motionweb_start_cleanup')) :
-  function motionweb_start_cleanup()
+	function motionweb_start_cleanup()
 {
-  add_action('init', 'motionweb_cleanup_head'); // Launching operation cleanup.
-  add_filter('the_generator', 'motionweb_remove_rss_version'); // Remove WP version from RSS.
-  add_filter('wp_head', 'motionweb_remove_wp_widget_recent_comments_style', 1); // Remove pesky injected css for recent comments widget.
-  add_action('wp_head', 'motionweb_remove_recent_comments_style', 1); // Clean up comment styles in the head.
-  add_filter('img_caption_shortcode', 'motionweb_remove_figure_inline_style', 10, 3); // Remove inline width attribute from figure tag
+	add_action('init', 'motionweb_cleanup_head'); // Launching operation cleanup.
+	add_filter('the_generator', 'motionweb_remove_rss_version'); // Remove WP version from RSS.
+	add_filter('wp_head', 'motionweb_remove_wp_widget_recent_comments_style', 1); // Remove pesky injected css for recent comments widget.
+	add_action('wp_head', 'motionweb_remove_recent_comments_style', 1); // Clean up comment styles in the head.
+	add_filter('img_caption_shortcode', 'motionweb_remove_figure_inline_style', 10, 3); // Remove inline width attribute from figure tag
 
 }
 add_action('after_setup_theme', 'motionweb_start_cleanup');
@@ -304,84 +304,84 @@ endif;
 // Clean up head.+
 ////////////////////////////////////////////////////////////////////////////
 if (!function_exists('motionweb_cleanup_head')) :
-  function motionweb_cleanup_head()
+	function motionweb_cleanup_head()
 {
-  remove_action('wp_head', 'rsd_link'); // EditURI link.
-  remove_action('wp_head', 'feed_links_extra', 3); // Category feed links.
-  remove_action('wp_head', 'feed_links', 2); // Post and comment feed links.
-  remove_action('wp_head', 'wlwmanifest_link'); // Windows Live Writer.
-  remove_action('wp_head', 'index_rel_link'); // Index link.
-  remove_action('wp_head', 'parent_post_rel_link', 10, 0); // Previous link.
-  remove_action('wp_head', 'start_post_rel_link', 10, 0); // Start link.
+	remove_action('wp_head', 'rsd_link'); // EditURI link.
+	remove_action('wp_head', 'feed_links_extra', 3); // Category feed links.
+	remove_action('wp_head', 'feed_links', 2); // Post and comment feed links.
+	remove_action('wp_head', 'wlwmanifest_link'); // Windows Live Writer.
+	remove_action('wp_head', 'index_rel_link'); // Index link.
+	remove_action('wp_head', 'parent_post_rel_link', 10, 0); // Previous link.
+	remove_action('wp_head', 'start_post_rel_link', 10, 0); // Start link.
   //remove_action('wp_head', 'rel_canonical', 10, 0); // Canonical.
-  remove_action('wp_head', 'wp_shortlink_wp_head', 10, 0); // Shortlink.
-  remove_action('wp_head', 'adjacent_posts_rel_link_wp_head', 10, 0); // Links for adjacent posts.
-  remove_action('wp_head', 'wp_generator'); // WP version.
-  remove_action('wp_head', 'print_emoji_detection_script', 7); // Emoji detection script.
-  remove_action('wp_print_styles', 'print_emoji_styles'); // Emoji styles.
+	remove_action('wp_head', 'wp_shortlink_wp_head', 10, 0); // Shortlink.
+	remove_action('wp_head', 'adjacent_posts_rel_link_wp_head', 10, 0); // Links for adjacent posts.
+	remove_action('wp_head', 'wp_generator'); // WP version.
+	remove_action('wp_head', 'print_emoji_detection_script', 7); // Emoji detection script.
+	remove_action('wp_print_styles', 'print_emoji_styles'); // Emoji styles.
 }
 endif;
 
 // Remove WP version from RSS.
 ////////////////////////////////////////////////////////////////////////////
 if (!function_exists('motionweb_remove_rss_version')) :
-  function motionweb_remove_rss_version()
+	function motionweb_remove_rss_version()
 {
-  return '';
+	return '';
 }
 endif;
 
 // Remove injected CSS for recent comments widget.
 ////////////////////////////////////////////////////////////////////////////
 if (!function_exists('motionweb_remove_wp_widget_recent_comments_style')) :
-  function motionweb_remove_wp_widget_recent_comments_style()
+	function motionweb_remove_wp_widget_recent_comments_style()
 {
-  if (has_filter('wp_head', 'wp_widget_recent_comments_style')) {
-    remove_filter('wp_head', 'wp_widget_recent_comments_style');
-  }
+	if (has_filter('wp_head', 'wp_widget_recent_comments_style')) {
+		remove_filter('wp_head', 'wp_widget_recent_comments_style');
+	}
 }
 endif;
 
 // Remove injected CSS from recent comments widget.
 ////////////////////////////////////////////////////////////////////////////
 if (!function_exists('motionweb_remove_recent_comments_style')) :
-  function motionweb_remove_recent_comments_style()
+	function motionweb_remove_recent_comments_style()
 {
-  global $wp_widget_factory;
-  if (isset($wp_widget_factory->widgets['WP_Widget_Recent_Comments'])) {
-    remove_action('wp_head', array($wp_widget_factory->widgets['WP_Widget_Recent_Comments'], 'recent_comments_style'));
-  }
+	global $wp_widget_factory;
+	if (isset($wp_widget_factory->widgets['WP_Widget_Recent_Comments'])) {
+		remove_action('wp_head', array($wp_widget_factory->widgets['WP_Widget_Recent_Comments'], 'recent_comments_style'));
+	}
 }
 endif;
 
 // Remove inline width attribute from figure tag causing images wider than 100% of its container
 ////////////////////////////////////////////////////////////////////////////
 if (!function_exists('motionweb_remove_figure_inline_style')) :
-  function motionweb_remove_figure_inline_style($output, $attr, $content)
+	function motionweb_remove_figure_inline_style($output, $attr, $content)
 {
-  $atts = shortcode_atts(array(
-    'id' => '',
-    'align' => 'alignnone',
-    'width' => '',
-    'caption' => '',
-    'class' => '',
-  ), $attr, 'caption');
+	$atts = shortcode_atts(array(
+		'id' => '',
+		'align' => 'alignnone',
+		'width' => '',
+		'caption' => '',
+		'class' => '',
+	), $attr, 'caption');
 
-  $atts['width'] = (int)$atts['width'];
-  if ($atts['width'] < 1 || empty($atts['caption'])) {
-    return $content;
-  }
+	$atts['width'] = (int)$atts['width'];
+	if ($atts['width'] < 1 || empty($atts['caption'])) {
+		return $content;
+	}
 
-  if (!empty($atts['id'])) {
-    $atts['id'] = 'id="' . esc_attr($atts['id']) . '" ';
-  }
+	if (!empty($atts['id'])) {
+		$atts['id'] = 'id="' . esc_attr($atts['id']) . '" ';
+	}
 
-  $class = trim('wp-caption ' . $atts['align'] . ' ' . $atts['class']);
+	$class = trim('wp-caption ' . $atts['align'] . ' ' . $atts['class']);
 
-  if (current_theme_supports('html5', 'caption')) {
-    return '<figure ' . $atts['id'] . ' class="' . esc_attr($class) . '">'
-      . do_shortcode($content) . '<figcaption class="wp-caption-text">' . $atts['caption'] . '</figcaption></figure>';
-  }
+	if (current_theme_supports('html5', 'caption')) {
+		return '<figure ' . $atts['id'] . ' class="' . esc_attr($class) . '">'
+			. do_shortcode($content) . '<figcaption class="wp-caption-text">' . $atts['caption'] . '</figcaption></figure>';
+	}
 
 }
 endif;
@@ -390,17 +390,18 @@ endif;
 ////////////////////////////////////////////////////////////////////////////
 function remove_version_params($src)
 {
-  $parts = explode('?ver', $src);
+	$parts = explode('?ver', $src);
 
-  return $parts[0];
+	return $parts[0];
 }
 add_filter('script_loader_src', 'remove_version_params', 15, 1);
 add_filter('style_loader_src', 'remove_version_params', 15, 1);
 
 //Remove all classes and IDs from Nav Menu
 ////////////////////////////////////////////////////////////////////////////
-function wp_nav_menu_remove($var) {
-  return is_array($var) ? array_intersect($var, array('nav-item', 'active')) : '';
+function wp_nav_menu_remove($var)
+{
+	return is_array($var) ? array_intersect($var, array('nav-item', 'active')) : '';
 }
 add_filter('page_css_class', 'wp_nav_menu_remove', 100, 1);
 add_filter('nav_menu_item_id', 'wp_nav_menu_remove', 100, 1);
@@ -411,20 +412,20 @@ add_filter('nav_menu_css_class', 'wp_nav_menu_remove', 100, 1);
 add_action('customize_register', 'jgc_remove_additional_css_control', 11);
 function jgc_remove_additional_css_control($wp_customize)
 {
-  $wp_customize->remove_control('custom_css');
+	$wp_customize->remove_control('custom_css');
 }
 
 // Remove scripts from head.
 ////////////////////////////////////////////////////////
 function move_scripts_from_head_to_footer()
 {
-    remove_action('wp_head', 'wp_print_scripts');
-    remove_action('wp_head', 'wp_print_head_scripts', 9);
-    remove_action('wp_head', 'wp_enqueue_scripts', 1);
+	remove_action('wp_head', 'wp_print_scripts');
+	remove_action('wp_head', 'wp_print_head_scripts', 9);
+	remove_action('wp_head', 'wp_enqueue_scripts', 1);
 
-    add_action('wp_footer', 'wp_print_scripts', 5);
-    add_action('wp_footer', 'wp_enqueue_scripts', 5);
-    add_action('wp_footer', 'wp_print_head_scripts', 5);
+	add_action('wp_footer', 'wp_print_scripts', 5);
+	add_action('wp_footer', 'wp_enqueue_scripts', 5);
+	add_action('wp_footer', 'wp_print_head_scripts', 5);
 }
 add_action('wp_enqueue_scripts', 'move_scripts_from_head_to_footer');
 
