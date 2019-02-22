@@ -99,17 +99,5 @@ class Wp_Metas_Seo_Admin {
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/wp-metas-seo-admin.js', array( 'jquery' ), $this->version, false );
 
 	}
-	function social_plugin_menu()
-{
-	add_menu_page(
-		'Ajuste Sociales',
-		'ID Facebook',
-		'administrador',
-		'social-max-length-content-settings',
-		'social-max-length_content_page_settings',
-		'dashicons-admin-generic'
-	);
-}
-add_action('admin_menu', 'social_plugin_menu');
 }
 
