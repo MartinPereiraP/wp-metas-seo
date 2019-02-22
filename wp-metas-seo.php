@@ -429,5 +429,4 @@ function move_scripts_from_head_to_footer()
 }
 add_action('wp_enqueue_scripts', 'move_scripts_from_head_to_footer');
 
-
 run_wp_metas_seo();
